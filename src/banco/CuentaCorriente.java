@@ -17,7 +17,7 @@ public class CuentaCorriente extends CuentaBancaria {
 
     @Override
     public String describir() {
-        return super.describir() + "comisión por transacción $: "
+        return super.describir() + "  ---comisión por transacción $: "
                 + comisionPorTransaccion;
     }
 

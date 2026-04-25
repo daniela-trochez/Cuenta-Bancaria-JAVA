@@ -7,7 +7,6 @@ public class CuentaAhorros extends CuentaBancaria {
 
     public CuentaAhorros(String numeroCuenta, String titular, double saldo,
                          double tasaInteresMensual, double saldoMinimo) {
-
         super(numeroCuenta, titular, saldo);
 
         this.tasaInteresMensual = tasaInteresMensual;
@@ -15,7 +14,7 @@ public class CuentaAhorros extends CuentaBancaria {
     }
     @Override
     public String describir(){
-        return super.describir() + "tasa mensual: "+tasaInteresMensual+"%";
+        return super.describir() + " --tasa mensual: "+tasaInteresMensual+"%";
 
     }
 
@@ -37,6 +36,8 @@ public class CuentaAhorros extends CuentaBancaria {
         }
         setSaldo(nuevoSaldo);
     }
+
+
     public double calcularInteresMes(){
         return getSaldo() * tasaInteresMensual /100;
     }

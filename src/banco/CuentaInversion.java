@@ -1,9 +1,9 @@
 package banco;
 
-public class CuentaInversion extends  CuentaBancaria {
+public class CuentaInversion extends CuentaBancaria {
 
     private double tasaAnual;
-    private  int plazoMeses;
+    private int plazoMeses;
     private double penalizacioRetiroAnticipado;
 
     //contructor con Super
@@ -20,21 +20,34 @@ public class CuentaInversion extends  CuentaBancaria {
 
     @Override
     public String describir() {
-        return super.describir() +" | Plazo: "+ plazoMeses +
-                "Tasa anual: "+tasaAnual+"%";
+        return super.describir() + " --| Plazo: " + plazoMeses + "meses"+
+                " | Tasa anual: " + tasaAnual + "%";
     }
 
-    public double calcularComision(){
+    public double calcularComision() {
         return penalizacioRetiroAnticipado;
     }
-
-    public void realizarRetiro(double monto){
+    @Override
+    public void realizarRetiro(double monto) {
 
         double total = monto + penalizacioRetiroAnticipado;
-        setSaldo(getSaldo()-total);
 
+        if (total > getSaldo()) {
+            System.out.println("no hay suficiente saldo");
+            return;
+        }
+
+        setSaldo(getSaldo() - total);
     }
 
-     //calcularComision(int mesesTranscurridos){
+    //penalización por retirarse antes de tiempo
+
+    public double calcularComision(int mesesTranscurridos) {
+        if (mesesTranscurridos >= plazoMeses) {
+            return 0.0;
+        } else {
+            return penalizacioRetiroAnticipado;
+        }
+    }
 
 }
